@@ -1,0 +1,46 @@
+<div class="container">
+  <div class="row mt-5">
+      <div class="col-sm-6 offset-3">
+          <div *ngIf="alertSwitch">
+          <alert *ngIf="alertClass=='success'" type="{{alertClass}}" >
+            {{alertMessage}} 
+          </alert>
+          <alert *ngIf="alertClass=='danger'" type="{{alertClass}}"  >            
+             {{alertMessage}}
+          </alert>
+          </div>
+          <div class="card">
+              <div class="card-header">
+                login
+              </div>
+              <div class="card-body">
+                  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                       
+                      <div class="form-group">
+                        <label for="email">Email address</label>
+                        <input type="email" class="form-control" formControlName="email" id="email"   placeholder="Enter email" [ngClass]="{ 'd-block': submitted && f.email.errors }" > 
+                        <small  *ngIf="submitted && f.email.errors" class="form-text text-danger d-none" [ngClass]="{ 'd-block': submitted && f.email.errors }">
+                          <p  *ngIf="f.email.errors.required">Email is required</p>
+                          <p  *ngIf="f.email.errors.email">Enter valid email</p>
+                        </small>
+                      </div>
+                      <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control" formControlName="password" id="password" placeholder="Password" [ngClass]="{ 'd-block': submitted && f.email.errors }" >
+                        <small  *ngIf="submitted && f.password.errors" class="form-text text-danger d-none" [ngClass]="{ 'd-block': submitted && f.password.errors }">
+                          <p  *ngIf="f.password.errors.required">Password is required</p>
+                          <p  *ngIf="f.password.errors.minlength">Enter minimum 6 characters</p>
+                        </small>
+                      </div>
+                       
+                      <button type="submit" class="btn btn-primary" >Login</button>
+                    </form>
+              </div>
+            </div>
+      </div>
+       
+    </div>
+</div>
+
+
+

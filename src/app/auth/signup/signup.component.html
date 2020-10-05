@@ -1,0 +1,57 @@
+<div class="container">
+    <div class="row mt-5">
+        <div class="col-sm-6 offset-3">
+          <div *ngIf="alertSwitch">
+          <alert *ngIf="alertClass=='success'" type="{{alertClass}}"  >
+            {{alertMessage}} 
+          </alert>
+          <alert *ngIf="alertClass=='danger'" type="{{alertClass}}"  >            
+             {{alertMessage.email}}
+          </alert>
+        </div>
+          <br>
+            <div class="card">
+                <div class="card-header">
+                  Register
+                </div>                  
+               
+                <div class="card-body">
+                    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" id="registerform" autocomplete="off">
+                      
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" class="form-control" id="name"  formControlName="name"  placeholder="Enter Name">
+                            <small  *ngIf="submitted && f.name.errors" class="form-text text-danger d-none" [ngClass]="{ 'd-block': submitted && f.name.errors }">
+                              <p  *ngIf="f.name.errors.required">Name is required</p>
+                            </small>
+                            
+                          </div>
+                        <div class="form-group">
+                          <label for="email">Email address</label>
+                          <input type="email" class="form-control" id="email"   formControlName="email"  [ngClass]="{ 'd-block': submitted && f.email.errors }"   autocomplete="off" placeholder="Enter email"> 
+                          <small  *ngIf="submitted && f.email.errors" class="form-text text-danger d-none" [ngClass]="{ 'd-block': submitted && f.email.errors }">
+                            <p  *ngIf="f.email.errors.required">Email is required</p>
+                            <p  *ngIf="f.email.errors.email">Enter valid email</p>
+                          </small>
+                        </div>
+                        <div class="form-group">
+                          <label for="password">Password</label>
+                          <input type="password" class="form-control" id="password" formControlName="password" [ngClass]="{ 'd-block': submitted && f.password.errors }"  autocomplete="off"  placeholder="Password">
+                          <small  *ngIf="submitted && f.password.errors" class="form-text text-danger d-none" [ngClass]="{ 'd-block': submitted && f.password.errors }">
+                            <p  *ngIf="f.password.errors.required">Password is required</p>
+                            <p  *ngIf="f.password.errors.minlength">Enter minimum 6 characters</p>
+                          </small>
+                        </div>   
+                        <div class="form-group">           
+                        <button  type="submit" class="btn btn-primary" >SignUp</button>
+                      </div>         
+                      </form>
+                </div>
+              </div>
+        </div>
+         
+      </div>
+</div>
+
+
+
